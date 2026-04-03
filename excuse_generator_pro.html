@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Alibis & Gentle Outs</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&family=Lora:ital,wght@0,400;0,700;1,400&family=Shadows+Into+Light&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --sage: #9CAF88;
+  --peach: #FFDAB9;
+  --cream: #FFFDF5;
+  --soft-ink: #4A4E4D;
+  --petal: #F4C2C2;
+  --sun: #FFEFBB;
+  --border: #E0D7C6;
+}
+
+body { 
+    background: var(--cream); 
+    background-image: radial-gradient(#e5e5f7 0.5px, transparent 0.5px);
+    background-size: 20px 20px;
+    font-family: 'Quicksand', sans-serif; 
+    color: var(--soft-ink);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+
+.card {
+    background: white;
+    max-width: 750px;
+    width: 100%;
+    padding: 3rem;
+    border-radius: 40px;
+    box-shadow: 0 25px 50px rgba(156, 175, 136, 0.2);
+    border: 1px solid var(--border);
+}
+
+.header { text-align: center; margin-bottom: 3rem; }
+.header h1 { font-family: 'Lora', serif; font-size: 2.8rem; color: var(--sage); }
+.header p { font-style: italic; color: #999; margin-top: 8px; font-size: 1.1rem;}
+
+.section { margin-bottom: 2.5rem; border-bottom: 1px solid #f5f5f5; padding-bottom: 2rem; }
+.section-title {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1.2rem;
+    color: var(--sage);
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.section-title small { font-size: 0.7rem; color: #bbb; font-weight: 400; text-transform: none; letter-spacing: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+
+.btn {
+    background: var(--cream);
+    border: 2px solid transparent;
+    padding: 14px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    transition: all 0.25s ease;
+    text-align: center;
+}
+
+.btn:hover { background: var(--sun); transform: translateY(-2px); }
+.btn.active { border-color: var(--sage); background: white; box-shadow: 0 8px 15px rgba(156, 175, 136, 0.2); font-weight: 600; color: var(--sage); }
+
+.main-trigger {
+    width: 100%;
+    background: var(--sage);
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    font-size: 1.4rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Lora', serif;
+    font-weight: 700;
+    transition: all 0.3s;
+    margin-top: 1rem;
+}
+
+.main-trigger:hover { background: #8DA177; box-shadow: 0 15px 30px rgba(156, 175, 136, 0.4); transform: translateY(-3px); }
+
+.result-container {
+    margin-top: 3rem;
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 25px;
+    border: 2px solid var(--sun);
+    box-shadow: inset 0 0 20px var(--sun);
+    animation: bloom 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes bloom { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+.note-text { font-family: 'Shadows Into Light', cursive; font-size: 1.8rem; line-height: 1.4; color: #444; }
+.meta-row { display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px dashed var(--border); }
+.score-tag { padding: 6px 16px; background: var(--cream); border-radius: 25px; font-size: 0.85rem; color: var(--sage); font-weight: 600; }
+
+.copy-btn { background: var(--soft-ink); color: white; border: none; padding: 10px 20px; border-radius: 12px; cursor: pointer; font-size: 0.9rem; transition: 0.2s; }
+.copy-btn:hover { background: #000; }
+</style>
+</head>
+<body>
+
+<div class="card">
+    <div class="header">
+        <h1>Spring Alibis</h1>
+        <p>A softer way to step away. 🌿</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>01. Whose inbox are we visiting?</span>
+            <small>Tailors the greeting and level of respect.</small>
+        </div>
+        <div class="grid" data-group="recipient">
+            <button class="btn" data-val="formal">The Big Boss</button>
+            <button class="btn" data-val="casual">A Sweet Friend</button>
+            <button class="btn" data-val="family">Family/Relative</button>
+            <button class="btn" data-val="client">A Waiting Client</button>
+            <button class="btn" data-val="group">A Group Chat</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>02. What's the nature of the "Oops"?</span>
+            <small>The core reason for your absence.</small>
+        </div>
+        <div class="grid" data-group="situation">
+            <button class="btn" data-val="health">Health & Energy</button>
+            <button class="btn" data-val="home">Home & Hearth</button>
+            <button class="btn" data-val="nature">Spring & Nature</button>
+            <button class="btn" data-val="clumsy">Total Clumsiness</button>
+            <button class="btn" data-val="transport">Traffic & Travel</button>
+            <button class="btn" data-val="pets">Pet Shenanigans</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>03. How long is the quiet period?</span>
+            <small>Changes the weight of the alibi.</small>
+        </div>
+        <div class="grid" data-group="duration">
+            <button class="btn" data-val="short">A Little While</button>
+            <button class="btn" data-val="day">Until Tomorrow</button>
+            <button class="btn" data-val="weekend">The Rest of the Week</button>
+            <button class="btn" data-val="forever">A Long Sabbatical</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">
+            <span>04. How should the heart sound?</span>
+            <small>The mood of your message.</small>
+        </div>
+        <div class="grid" data-group="tone">
+            <button class="btn" data-val="gentle">Soft & Kind</button>
+            <button class="btn" data-val="messy">A Little Scattered</button>
+            <button class="btn" data-val="vague">Quiet & Vague</button>
+            <button class="btn" data-val="dramatic">Slightly Dramatic</button>
+            <button class="btn" data-val="polite">Professional & Polished</button>
+        </div>
+    </div>
+
+    <button class="main-trigger" onclick="generateAlibi()">Bloom Your Alibi</button>
+
+    <div id="resultBox" style="display:none;"></div>
+</div>
+
+<script>
+const data = {
+    health: {
+        short: "I've caught a sudden dizzy spell and need to sit in the shade for an hour.",
+        day: "My spring allergies have turned into a full-blown sinus war. I'm taking the day to recover.",
+        weekend: "I've completely run out of steam and need a few days of quiet to feel human again.",
+        forever: "I'm stepping away to focus on my well-being for a while. I need a true reset."
+    },
+    home: {
+        short: "My kitchen sink has decided to become a fountain. Waiting for the water to stop!",
+        day: "I've had a minor plumbing catastrophe that requires me to be home all day for repairs.",
+        weekend: "A tree limb came down in the yard and took out my connection. It's going to be a long fix.",
+        forever: "I'm currently renovating my life and my home. I'll be back when the dust settles."
+    },
+    nature: {
+        short: "I got caught in a sudden spring downpour and I'm currently drying out my only pair of shoes.",
+        day: "The local wildlife (a very stubborn squirrel) has made a nest in my car engine. Dealing with it now.",
+        weekend: "I've gone on a spontaneous nature retreat to see the blooms, and I have zero signal.",
+        forever: "I've decided to follow the sun south for a while. Catch you in the next season."
+    },
+    clumsy: {
+        short: "I managed to spill an entire vase of flower water on my laptop. It's currently in rice.",
+        day: "I locked myself out of the house while taking out the trash. Waiting on a spare key.",
+        weekend: "I've dropped my phone into a deep puddle and I'm totally disconnected until I get a replacement.",
+        forever: "I've realized I'm too clumsy for the digital world today. I'm retiring to a life of safety."
+    },
+    transport: {
+        short: "The road is blocked by a fallen blossom tree. I'm taking the long way around.",
+        day: "My car decided that today was a good day to retire. Waiting for a tow in the sun.",
+        weekend: "I'm stranded in a small town due to a train cancellation. Embracing the slow life.",
+        forever: "I'm currently wandering the coast. I don't think I'm coming back to the city."
+    },
+    pets: {
+        short: "The cat has decided to fall asleep on my keyboard and I simply cannot move her.",
+        day: "My dog found a patch of mud and a white rug. It's going to be a very long cleaning day.",
+        weekend: "I'm taking the puppy on a long-awaited trip to the countryside to see the green grass.",
+        forever: "The dog and I have run away to join a farm. We are very happy."
+    }
+};
+
+const greetings = {
+    formal: { gentle: "Hi there, I'm so sorry but... ", messy: "Oh gosh, please forgive the late notice... ", vague: "Regarding our schedule: ", dramatic: "I have some unfortunate news... ", polite: "Dear team, unfortunately... " },
+    casual: { gentle: "Hey lovely! Just a heads up... ", messy: "You won't believe what I've done now... ", vague: "Hey, something's come up... ", dramatic: "The universe is testing me today! ", polite: "Hi! Just wanted to let you know... " },
+    family: { gentle: "Hi mom/dad, just wanted to say... ", messy: "I'm a total disaster today! ", vague: "Change of plans for me... ", dramatic: "You're never going to believe this... ", polite: "Hi everyone, I won't be around for a bit... " },
+    client: { gentle: "Thank you for your patience. Unfortunately... ", messy: "So sorry for the scramble, but... ", vague: "There's been a slight delay... ", dramatic: "Due to an emergency... ", polite: "Dear Client, I must reschedule... " },
+    group: { gentle: "Hey guys! ", messy: "Chaos update: ", vague: "Going dark for a bit... ", dramatic: "ANNOUNCEMENT: ", polite: "Hello everyone, " }
+};
+
+let userChoices = {};
+
+document.querySelectorAll('.btn').forEach(btn => {
+    btn.onclick = (e) => {
+        const group = e.target.closest('.grid').dataset.group;
+        e.target.closest('.grid').querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        userChoices[group] = e.target.dataset.val;
+    };
+});
+
+function generateAlibi() {
+    const keys = ['recipient', 'situation', 'duration', 'tone'];
+    if(!keys.every(k => userChoices[k])) {
+        alert("Please answer all the little questions so your alibi can bloom! 🌸");
+        return;
+    }
+
+    const box = document.getElementById('resultBox');
+    const intro = greetings[userChoices.recipient][userChoices.tone];
+    const core = data[userChoices.situation][userChoices.duration];
+    
+    let score = 95;
+    if(userChoices.duration === 'forever') score = 15;
+    if(userChoices.duration === 'weekend') score -= 15;
+    if(userChoices.tone === 'dramatic') score -= 20;
+
+    box.style.display = 'block';
+    box.innerHTML = `
+        <div class="result-container">
+            <div class="note-text">${intro}${core}</div>
+            <div class="meta-row">
+                <div class="score-tag">✨ Believability Score: ${score}%</div>
+                <button class="copy-btn" onclick="copyNote()">Copy Alibi</button>
+            </div>
+        </div>
+    `;
+    box.scrollIntoView({ behavior: 'smooth' });
+}
+
+function copyNote() {
+    const txt = document.querySelector('.note-text').innerText;
+    navigator.clipboard.writeText(txt);
+    alert("Alibi copied! Go enjoy your spring. 🌿");
+}
+</script>
+
+</body>
+</html>
